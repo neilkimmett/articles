@@ -24,7 +24,7 @@ Foundation provides two concrete subclasses for `NSFormatter`: `NSNumberFormatte
 
 `NSNumberFormatter` handles every aspect of number formatting imaginable, from mathematical and scientific notation, to currencies and percentages. Nearly everything about the formatter can be customized, whether its the currency symbol, grouping separator, number of significant digits, rounding behavior, fractions, character for infinity, string representation for `0`, or maximum / minimum values. It can even write out numbers in several languages!
 
-### Styles
+### Number Styles
 
 When using an `NSNumberFormatter`, the first order of business is to determine what kind of information you're displaying. Is it a price? Is this a whole number, or should decimal values be shown?
 
@@ -68,15 +68,15 @@ For anything more advanced, an `NSDecimalNumberHandler` object can be passed as 
 
 ## NSDateFormatter
 
+`NSDateFormatter` is the be all and end all of getting textual representations of both dates and times.
 
-
-## Subclassing
+### Date & Time Styles
 
 ## Re-Using Formatter Instances
 
 Perhaps the most critical detail to keep in mind when using formatters is that they are _extremely_ expensive to create. Even just an `alloc init` of an `NSNumberFormatter` in a tight loop is enough to bring an app to its knees.
 
-Therefore, it's strongly recommended that formatters be created once and re-used as much as possible.
+Therefore, it's strongly recommended that formatters be created once, and re-used as much as possible.
 
 If it's just a single method using a particular formatter, a static instance is a good strategy:
 
