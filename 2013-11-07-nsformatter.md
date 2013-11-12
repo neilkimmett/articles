@@ -1,9 +1,9 @@
 ---
 layout: post
 title: NSFormatter
-framework: ""
-rating: 0.0
-description: ""
+framework: "Foundation"
+rating: 8.0
+description: "Conversion is the tireless errand of software development. Most programming tasks boil down to some variation of transforming data into something more useful."
 ---
 
 Conversion is the tireless errand of software development. Most programming tasks boil down to some variation of transforming data into something more useful.
@@ -62,7 +62,7 @@ for (NSString *identifier in @[@"en_US", @"fr_FR"]) {
 
 In order to prevent numbers from getting annoyingly pedantic (_"thirty-two point three three, repeating, of course..."_), make sure get a handle on `NSNumberFormatter`'s rounding behavior.
 
-The easiest way to do this, would be to `setUsesSignificantDigits:` to `YES`, and then set minimum and maximum number of significant digits appropriately. For example, a number formatter used for approximate distances in directions, would do well with significant dgitis to the tenths place for miles or kilometers, but only the ones place for feet or meters.
+The easiest way to do this, would be to `setUsesSignificantDigits:` to `YES`, and then set minimum and maximum number of significant digits appropriately. For example, a number formatter used for approximate distances in directions, would do well with significant digits to the tenths place for miles or kilometers, but only the ones place for feet or meters.
 
 For anything more advanced, an `NSDecimalNumberHandler` object can be passed as the `roundingBehavior` property of a number formatter.
 
@@ -71,6 +71,85 @@ For anything more advanced, an `NSDecimalNumberHandler` object can be passed as 
 `NSDateFormatter` is the be all and end all of getting textual representations of both dates and times.
 
 ### Date & Time Styles
+
+The most important properties for a `NSDateFormatter` object is its `dateStyle` and `timeStyle`. Like `NSNumberFormatter -numberStyle`, these styles provide common preset configurations for common formats. In this case, the various formats are distinguished by their specificity (more specific = longer).
+
+Both properties share a single set of `enum` values: 
+
+<table>
+    <thead>
+        <tr>
+            <th>Style</th>
+            <th>Description</th>
+            <th colspan="2">Examples</th>
+        </tr>
+        <tr>
+            <th colspan="2"></th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><tt>NSDateFormatterNoStyle</tt></td>
+            <td>Specifies no style.</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><tt>NSDateFormatterShortStyle</tt></td>
+            <td>Specifies a short style, typically numeric only.</td>
+            <td>11/23/37</td>
+            <td>3:30pm</td>
+        </tr>
+        <tr>
+            <td><tt>NSDateFormatterMediumStyle</tt></td>
+            <td>Specifies a medium style, typically with abbreviated text.</td>
+            <td>Nov 23, 1937</td>
+            <td>3:30:32pm</td>
+        </tr>
+        <tr>
+            <td><tt>NSDateFormatterLongStyle</tt></td>
+            <td>Specifies a long style, typically with full text.</td>
+            <td>November 23, 1937</td>
+            <td>3:30:32pm</td>
+        </tr>
+        <tr>
+            <td><tt>NSDateFormatterFullStyle</tt></td>
+            <td>Specifies a full style with complete details.</td>
+            <td>Tuesday, April 12, 1952 AD</td>
+            <td>3:30:42pm PST</td>
+        </tr>
+    </tbody>
+</table>
+
+`dateStyle` and `timeStyle` are set independently. For example to display just the time, an `NSDateFormatter` would be configured with a `dateStyle` of `NSDateFormatterNoStyle`:
+
+~~~{objective-c}
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setDateStyle:NSDateFormatterNoStyle];
+[formatter setTimeStyle:NSDateFormatterMediumStyle];
+
+NSLog(@"%@", [formatter stringFromDate:[NSDate date]]);
+// 12:11:19pm
+~~~
+
+Whereas setting both to `NSDateFormatterLongStyle` yields the following:
+
+~~~{objective-c}
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setDateStyle:NSDateFormatterLongStyle];
+[formatter setTimeStyle:NSDateFormatterLongStyle];
+
+NSLog(@"%@", [formatter stringFromDate:[NSDate date]]);
+// Monday, November 11, 2013 12:11:19pm PST
+```
+
+As you might expect, each aspect of the date format can alternatively be configured individually, a la carte. For any aspiring time wizards `NSDateFormatter` has a bevy of different knobs and switches to play with.
+
+### Relative Formatting
+
+As of iOS 4 / OS X 10.6, `NSDateFormatter` supports relative date formatting for certain locales with the `doesRelativeDateFormatting` property. Setting this to `YES` would format the date of `[NSDate date]` to "Today".
 
 ## Re-Using Formatter Instances
 
@@ -115,3 +194,11 @@ If the formatter is used across several methods in the same class, that static i
 If the same formatter is privately implemented across several classes, one could either expose it publicly in one of the classes, or implement the static singleton method in a category on `NSNumberFormatter`.
 
 * * *
+
+If your app deals in numbers or dates, `NSFormatter` is indespensable. Actually, if your app doesn't... then what _does_ it do, exactly?
+
+Presenting useful information to users is as much about content as presentation. Invest in learning all of the secrets of `NSNumberFormatter` and `NSDateFormatter` to get everything exactly how you want them.
+
+And if you find yourself with formatting logic scattered across your app, consider creating your own `NSFormatter` subclass to consolidate all of that business logic in one place. 
+
+> [FormatterKit](https://github.com/mattt/FormatterKit) has great examples of `NSFormatter` subclasses for addresses, arrays, colors, locations, ordinal numbers, time intervals, and units of information.

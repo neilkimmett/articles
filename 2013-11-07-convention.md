@@ -6,6 +6,8 @@ rating: 0.0
 description: ""
 ---
 
+Societies function according to implicit and explicit rules. 
+
 > Placeholder from Cocoa Core Competencies
 
 - Methods that return objects typically return nil if they cannot create or find the object. They do not directly return a status code.

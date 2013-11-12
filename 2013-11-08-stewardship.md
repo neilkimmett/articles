@@ -85,27 +85,49 @@ pod 'NSHipsterKit', '~> 1.0'
 
 ## Maintaining
 
+Once the initial thrill of releasing a library has passed, the real work begins. The thing to remember is that a flurry of stars, watchers, and tweets may be exciting, but they don't amount to anything of real. Only when users start to come with their questions, issues, and pull requests does code become software.
+
 ### Versioning
+
+Versioning is a contract that library authors make to consumers in how software will be changed over time.
+
+The prevailing convention is Semantic Versioning, in which a release has a major, minor, and patch version, with each level signifying particular usage implications. 
+
+- A patch, or bugfix, release changes only implementation, keeping the public API and thus all documented intact. Consumers should be able to update between tiny versions without any change to their own code.
+- A minor, or point, release changes the public API in non-breaking ways, such as adding a new feature. Again, consumers should expect to have consumer code between minor versions work pretty much as expected.
+- A major release is anything that changes the public API in a backwards-incompatible way. Updating between major versions effectively means migrating consumer code to a new library.
+
+By following a few basic rules for versioning, developers are able to set clear expectations for how changes affect will affect shipping code. Deviating from these conventions as an author is irresponsible and disrespectful of anyone using the software, so take this responsibility seriously.
+
+> A comprehensive set of guidelines for semantic versioning can be found at http://semver.org
 
 ### Answering Questions
 
+One of our greatest flaws as humans is our relative inability to comprehend _not_ understanding or knowing something that we ourselves do. This makes is extremely difficult to diagnose (and at times empathize with) misunderstandings that someone else might be having.
+
+There's also a slight sadistic tendency for developers to lord knowledge over anyone who doesn't know as much as they do. We had to figure it out for ourselves (uphill both ways, in the snow) so why shouldn't they have to as well?
+
+We must learn how to do better than this. RTFM is a lame answer to any question. It's also a dead-end to a potential learning experience for yourself.
+
+Rather than disdaining questions, take them as an opportunity to understand you can do better. Each question is a data point for what could be clarified or improved within your own software and documentation. And one thing to consider: for each person who asks a question, there are dozens of others who don't and get frustrated and give up. Answering one question on Stack Overflow, a mailing list, or developer forums helps many more people than just the asker.
+
 ### Soliciting Contribution
 
-### Quality Assurance
-
-- Answer questions on Stack Overflow
-- Be responsive to issues
-- Release often according to SemVer
-- Being conservative in adding new features
-- Quality Assurance
-- 
+Coding is an inherently social act, and collaboration is the only proven way for 
 
 ## Transitioning
 
 The fate of any successful enterprise is to outgrow its original creators. While this may be a troubling or unwelcome notion, it is nevertheless something that any responsible creator should keep in mind. 
+
+> If anything, the reminder that everything is fleeting gives reason to find enjoyment in even the minutia of a preoccupation.
+
+### Recruiting & Delegating
+
+### 
 
 - Incorporating new contributors
 - Delegating repsonsibilities
 - 
 
 * * *
+
