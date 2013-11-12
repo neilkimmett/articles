@@ -6,6 +6,10 @@ rating: 0.0
 description: ""
 ---
 
+`NSFileManager` is Foundation's high-level API for working with filesystems. It abstracts Unix and Finder internals, providing a convenient way to create, read, move, copy, and delete files & directories on local or networked drives, as well as iCloud ubiquitous containers.
+
+Filesystems are a complex topic, with decades of history, vestigial complexities, and idiosyncracies, and is well outside the scope of a single article. And since most applications don't often interact with the filesystem much beyond simple file operations, one can get away with only knowing the basics.
+
 ## Common Tasks
 
 ### Determining If A File Exists
@@ -191,3 +195,5 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
     }
 });
 ~~~
+
+* * *
