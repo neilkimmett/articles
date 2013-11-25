@@ -27,11 +27,6 @@ For lack of language features to enforce this distinction, Objective-C must rely
 - **Accessors** are named with a _Noun Phrase (NP)_, (e.g., `name`, `attributedString`), with the exception of methods with a `BOOL` return type, which can precede with `is` (e.g. `isDirectory`).
 - **Mutators** are named with a _Verb Phrase (VP)_, (e.g. `setName:`, `resetCache`, `performSelector:`.
 
-## Breaches of Contract
-
-This matter of naming conventions as an indicator of method characteristics is a subset of the more general principle of establishing and fulfilling contracts in code.
-
-
 ## Too Clever By Half
 
 The mark of an expert beginner programmer is the desire to be "clever", by invoking obscure design patterns, elaborate meta-programming, or runtime manipulations teetering on the brink of calamity.
@@ -40,7 +35,7 @@ In reality, most programs just aren't that interesting. There's no reason to get
 
 ...but of course, everyone would like to think that they are the exception. The sooner you can start thinking of the project in front of you in terms of engineering rather than performance art, the better off you'll be.
 
-Objective-C provides a number of avenues for creative hackery, from method swizzeling and associated objects, to forward invocations and compiler directives. Powerful, though they are, these advanced tricks should be seen as a last resort, reserved for cases when no reasonable alternative exists.
+Objective-C provides a number of avenues for creative hackery, from method swizzling and associated objects, to forward invocations and compiler directives. Powerful, though they are, these advanced tricks should be seen as a last resort, reserved for cases when no reasonable alternative exists.
 
 What scares the hell out of veteran programmers is code that messes with underlying system assumptions. Re-ordering internal view hierarchies? Stomping on top of private methods in subclass implementations? Swizzling a base implementation on `NSObject`? This is the stuff of headaches and App Store rejections.
 

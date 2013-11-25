@@ -6,11 +6,15 @@ rating: 0.0
 description: ""
 ---
 
-`NSFileManager` is Foundation's high-level API for working with filesystems. It abstracts Unix and Finder internals, providing a convenient way to create, read, move, copy, and delete files & directories on local or networked drives, as well as iCloud ubiquitous containers.
+`NSFileManager` is Foundation's high-level API for working with file systems. It abstracts Unix and Finder internals, providing a convenient way to create, read, move, copy, and delete files & directories on local or networked drives, as well as iCloud ubiquitous containers.
 
-Filesystems are a complex topic, with decades of history, vestigial complexities, and idiosyncracies, and is well outside the scope of a single article. And since most applications don't often interact with the filesystem much beyond simple file operations, one can get away with only knowing the basics.
+File systems are a complex topic, with decades of history, vestigial complexities, and idiosyncrasies, and is well outside the scope of a single article. And since most applications don't often interact with the file system much beyond simple file operations, one can get away with only knowing the basics.
+
+What follows are some code samples for your copy-pasting pleasure. Use them as a foundation for understanding how to adjust parameters to your particular use case: 
 
 ## Common Tasks
+
+> Throughout the code samples is the magical incantation `NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)`. This may be tied with KVO as one of the worst APIs in Cocoa. Just know that this returns an array containing the user documents directory as the first object. Thank goodness for the inclusion of `NSArray -firstObject`.
 
 ### Determining If A File Exists
 
@@ -108,6 +112,8 @@ if ([fileManager fileExistsAtPath:filePath]) {
 }
 ~~~
 
+There are a number of file attributes that are made accessible through `NSFileManager`, which can be fetched with `-attributesOfItemAtPath:error:`, and other methods:
+
 #### File Attribute Keys
 
 > - `NSFileAppendOnly`: The key in a file attribute dictionary whose value indicates whether the file is read-only.
@@ -136,10 +142,16 @@ if ([fileManager fileExistsAtPath:filePath]) {
 
 ## NSFileManagerDelegate
 
+`NSFileManager` may optionally set a delegate to verify that it should perform a particular file operation. This allows the business logic of, for instance, which files to protect from deletion, to be factored out of the controller.
+
+There are four kinds of methods in the `<NSFileManagerDelegate>` protocol, each with a variation for working with paths, as well as methods for error handling.
+
 - `-fileManager:shouldMoveItemAtURL:toURL:`
 - `-fileManager:shouldCopyItemAtURL:toURL:`
 - `-fileManager:shouldRemoveItemAtURL:`
 - `-fileManager:shouldLinkItemAtURL:toURL:`
+
+If you were wondering when you might `alloc init` your own `NSFileManager` rather than using the shared instance, this is it. As per the documentation:
 
 > If you use a delegate to receive notifications about the status of move, copy, remove, and link operations, you should create a unique instance of the file manager object, assign your delegate to that object, and use that file manager to initiate your operations.
 
@@ -156,6 +168,7 @@ NSArray *contents = [fileManager contentsOfDirectoryAtURL:bundleURL
 for (NSString *filePath in contents) {
     [fileManager removeItemAtPath:filePath error:nil];
 }
+~~~
 
 #### CustomFileManagerDelegate.m
 
@@ -170,6 +183,10 @@ shouldRemoveItemAtURL:(NSURL *)URL
 ~~~
 
 ## Ubiquitous Storage
+
+Documents can also be moved to iCloud. If you guessed that this would be anything but straight forward, you'd be 100% correct.
+
+This is another occasion when you'd `alloc init` your own `NSFileManager` rather than using the shared instance. Because `URLForUbiquityContainerIdentifier:` and `setUbiquitous:itemAtURL:destinationURL:error:` are blocking calls, this entire operation needs to be dispatched to a background queue.
 
 ### Move Item to Ubiquitous Storage
 
@@ -196,4 +213,8 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
 });
 ~~~
 
+> You can find more information about ubiquitous document storage in Apple's "iCloud File Management" document.
+
 * * *
+
+There's a lot to know about file systems, but as an app developer, it's mostly an academic exercise. Now don't get me wrong—academic exercises are great! But they don't ship code. `NSFileManager` allows you to ignore most of the subtlety of all of this and get things done.

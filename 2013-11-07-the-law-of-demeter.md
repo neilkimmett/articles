@@ -6,9 +6,9 @@ rating: 0.0
 description: ""
 ---
 
-Information is power
-Power corrupts.
-Good fences make good neighbors.
+Information is power.  
+Power corrupts.  
+Good fences make good neighbors.  
 
 Also known as the "principle of least knowledge", The Law of Demeter is a design guideline that advocates for functionality to be loosely coupled with one another. Essentially: objects are best when they know least about other objects. Every part of your application should be ruthlessly modularized.
 
@@ -20,7 +20,7 @@ Languages in the C family are naturally aligned with this philosophy, because of
 
 Classes `#import` the headers of other classes they want to interact with, but are limited to seeing only the methods, functions, and constants exposed in those headers. Anything could be going on behind the scenes... and that's sort of the point, actually. Single-responsibility objects can't be bothered to worry about how state is stored internally, or which sorting strategy is being used—it's just not in their job description.
 
-Objective-C has a handful of unique langauge features that lend themselves to information hiding, that all professional developers should know well and use often. 
+Objective-C has a handful of unique language features that lend themselves to information hiding, that all professional developers should know well and use often. 
 
 ## Class Continuations
 
@@ -171,4 +171,4 @@ Another thing to note is that `PostsViewController` conforms to `EditPostViewCon
 
 * * *
 
-
+The Law of Demeter teaches us that what you don't know can't hurt you. Building your app around know-nothing components is the only way to ensure that a codebase will be able to scale and evolve over time. Approach API design from the perspective of the consumer, and you'll find that you'll have a much better time as a consumer yourself.

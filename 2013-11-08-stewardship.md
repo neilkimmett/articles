@@ -8,7 +8,7 @@ description: ""
 
 Open Source communities function within what economists describe as a Gift Economy. Rather than paying one another for goods or services through barter or currency, everyone shares with one another, and gains social currency based on their generosity. It's similar to how friends tend to take turns inviting one another over for dinner or a party.
 
-With the negligable cost of distributing software over the internet, developers are able to participate with millions of others around the world. And as a result, we have been able to collaboratively build amazing software, creating wealth and helping one another.
+With the negligible cost of distributing software over the Internet, developers are able to participate with millions of others around the world. And as a result, we have been able to collaboratively build amazing software, creating wealth and helping one another.
 
 In terms of open source participation, releasing code is only one aspect—and arguably not even the most important one at that. Developing an open source project requires equal parts engineering, product design, communication, and community management. But the true deciding factor for whether an open source project succeeds is **stewardship**.
 
@@ -97,23 +97,23 @@ The prevailing convention is Semantic Versioning, in which a release has a major
 - A minor, or point, release changes the public API in non-breaking ways, such as adding a new feature. Again, consumers should expect to have consumer code between minor versions work pretty much as expected.
 - A major release is anything that changes the public API in a backwards-incompatible way. Updating between major versions effectively means migrating consumer code to a new library.
 
-By following a few basic rules for versioning, developers are able to set clear expectations for how changes affect will affect shipping code. Deviating from these conventions as an author is irresponsible and disrespectful of anyone using the software, so take this responsibility seriously.
+> A changelog of all of the new features and bugfixes in a particular release is an essential tool for documenting changes to the project over time.
+
+By following a few basic rules for versioning, developers are able to set clear expectations for how changes affect will affect shipping code.
+
+Deviating from these conventions as an author is irresponsible and disrespectful of anyone using the software, so take this responsibility seriously.
 
 > A comprehensive set of guidelines for semantic versioning can be found at http://semver.org
 
 ### Answering Questions
 
-One of our greatest flaws as humans is our relative inability to comprehend _not_ understanding or knowing something that we ourselves do. This makes is extremely difficult to diagnose (and at times empathize with) misunderstandings that someone else might be having.
+One of our greatest flaws as humans is our relative inability to comprehend _not_ understanding or knowing something that we ourselves do. This makes it extremely difficult to diagnose (and at times empathize with) misunderstandings that someone else might be having.
 
 There's also a slight sadistic tendency for developers to lord knowledge over anyone who doesn't know as much as they do. We had to figure it out for ourselves (uphill both ways, in the snow) so why shouldn't they have to as well?
 
 We must learn how to do better than this. RTFM is a lame answer to any question. It's also a dead-end to a potential learning experience for yourself.
 
 Rather than disdaining questions, take them as an opportunity to understand you can do better. Each question is a data point for what could be clarified or improved within your own software and documentation. And one thing to consider: for each person who asks a question, there are dozens of others who don't and get frustrated and give up. Answering one question on Stack Overflow, a mailing list, or developer forums helps many more people than just the asker.
-
-### Soliciting Contribution
-
-Coding is an inherently social act, and collaboration is the only proven way for 
 
 ## Transitioning
 
@@ -123,11 +123,24 @@ The fate of any successful enterprise is to outgrow its original creators. While
 
 ### Recruiting & Delegating
 
-### 
+As a project grows, natural leaders will emerge. If you see someone consistently answering questions in issues or sending pull requests with bug fixes, ask if they would like some more responsibility.
 
-- Incorporating new contributors
-- Delegating repsonsibilities
-- 
+Co-maintainers don't come pre-baked; individuals must grow into that role. And that role is something that must be defined over time by everyone involved. Avoid drama and hard feelings by communicating honestly and often with collaborators.
+
+### Sunsetting
+
+All software has a lifecycle. At some point, all things must come to an end. Libraries  outgrow their usefulness, or supplanted by another piece of software, or simply fall out of favor.
+
+In any case, there will come a time when the lights need to be turned off, and it is the responsibility of the maintainer to wrap things up. 
+
+- Announce the ending of the project, offering suggestions for how to migrate to another solution
+- Keep the project around, but make a commit that removes source files from the master branch (Git will keep it safe in history)
+- Be sure to thank everyone involved for their help and contributions
+
+The alternative is to become a liability, an attractive nuisance... a mockery of once was a respectable code base. Take care to bow out gracefully.
 
 * * *
 
+Creating is one of the most fulfilling experiences in life, and it's something that's only improved by sharing with others. As software developers, we have a unique opportunity to be unbounded by physical limitations to make things that help one another.
+
+On the occasion that you do have the opportunity to participate in the community, be sure to make the most of it—you'll be happy you did. 
